@@ -1,0 +1,99 @@
+using UnityEngine;
+using System.Collections;
+
+
+//Make sure an AudioSource component on the GameObject where the script is added.
+[RequireComponent(typeof(AudioSource))]
+public class Brick : MonoBehaviour {
+
+    public int maxHits;
+    public int timesHit;
+    private bool BrickIsDestroyed=false;
+
+    //Make the AudioClip and Pitch are configurable in the editor
+    public AudioClip Sound;
+    public float PitchStep = 0.05F;
+    public float MaxPitch = 1.3F;
+
+    //Make the current pitch value global
+    public static float pitch = 1;
+
+    //Falling variables
+    public bool FallDown = false;
+    
+    [HideInInspector]    
+    public bool BlockIsDestroyed = false;
+    
+    private Vector2 velocity = Vector2.zero;
+
+    // Use this for initialization
+    void Start () {
+        timesHit = 0;
+    }
+    
+    // Update is called once per frame
+    void Update () {
+        if (FallDown && velocity != Vector2.zero)
+        {
+          
+            Vector2 pos = (Vector2)transform.position; 
+            pos += velocity * Time.deltaTime;
+        }
+    }
+
+    void OnBecameInvisible()
+    {
+        BlockIsDestroyed = true;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator OnCollisionExit2D(Collision2D c)
+    {
+        print ("Play Woggle!");
+        GetComponent<Collider2D>().enabled = false;
+        
+        //Play the Woggle animation
+        GetComponent<Animation>().Play();
+        
+     
+        //Wait here for the length of the Woggle animation 
+        yield return new WaitForSeconds(GetComponent<Animation>()["Woggle"].length);
+        
+        //Animation Woggle has finished, now decide what to do, falldown or just disappear
+        if (FallDown)
+        {
+            print ("Falling!");
+
+            velocity = new Vector2(0, Random.Range(1, 12.0F) *-1);
+        }
+        else
+        {
+            GetComponent<Renderer>().enabled = false;
+        }
+        Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D col){
+        print ("Ouch you hit me!");
+        timesHit++;
+
+        print ("Playing brick sound!");
+        //Increase pitch
+        pitch += PitchStep;
+        
+        //Limit pitch
+        if (pitch > MaxPitch)
+            pitch = 1;  //Reset pitch to one so it starts over with the lower tone
+        
+        //Apply pitch
+        GetComponent<AudioSource>().pitch = pitch;
+        
+        //Play it once for this collision hit
+        GetComponent<AudioSource>().PlayOneShot(Sound);
+
+        if (timesHit == maxHits) {
+            print ("Destroyed!");
+        }
+    }
+
+}

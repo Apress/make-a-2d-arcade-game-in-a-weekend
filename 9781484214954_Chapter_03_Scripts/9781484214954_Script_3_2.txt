@@ -1,0 +1,16 @@
+using UnityEngine;
+using System.Collections;
+
+public class Paddle : MonoBehaviour {
+	public int i=0;
+
+	// Use this for initialization
+	void Start () {
+		print(“This is my first Unity script!”);
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		print(Input.mousePosition);
+	}
+}
