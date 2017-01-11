@@ -16,7 +16,7 @@ See the file Contributing.md for more information on how you can contribute to t
 
 ##Errata
 
-"Page 16 - Figure 3-10 shows the Paddle Game Object assigned to the Ball Script correctly. However I do not mention that the user must drag and drop the paddle_03 Game Object from the Hierachy View to the Paddle variable of the Ball Script in the Inspector View of the Ball Game Object. "
+Page 16 - Figure 3-10 shows the Paddle Game Object assigned to the Ball Script correctly. However I do not mention that the user must drag and drop the paddle_03 Game Object from the Hierachy View to the Paddle variable of the Ball Script in the Inspector View of the Ball Game Object. "
 
 Page 30 (correction) - Figure 2-9 needs to be modified to show the background with a pixels per unit of 50
 
