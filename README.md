@@ -1,4 +1,4 @@
-#Apress Source Code
+# Apress Source Code
 
 This repository accompanies [*Make a 2D Arcade Game in a Weekend*](http://www.apress.com/9781484214954) by Jodessiah Sumpter (Apress, 2015).
 
@@ -6,15 +6,15 @@ This repository accompanies [*Make a 2D Arcade Game in a Weekend*](http://www.ap
 
 Download the files as a zip using the green button, or clone the repository to your machine using Git.
 
-##Releases
+## Releases
 
 Release v1.0 corresponds to the code in the published book, without corrections or updates.
 
-##Contributions
+## Contributions
 
 See the file Contributing.md for more information on how you can contribute to this repository.
 
-##Errata
+## Errata
 
 Page 16 - Figure 3-10 shows the Paddle Game Object assigned to the Ball Script correctly. However I do not mention that the user must drag and drop the paddle_03 Game Object from the Hierachy View to the Paddle variable of the Ball Script in the Inspector View of the Ball Game Object. "
 
